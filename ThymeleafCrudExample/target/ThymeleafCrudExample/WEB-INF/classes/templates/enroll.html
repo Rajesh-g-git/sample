@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>EWIRE</title>
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"></link>
+
+<link rel="stylesheet" th:href="@{/css/footer.css}" />
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">EWIRE</a>
+			</div>
+			<div class="container">
+				<ul class="nav navbar-nav">
+					<li><a href="/">Home</a></li>
+					<li class="active"><a href="/enroll">Add Employee</a></li>
+					<li><a href="/viewemployees">Employee details</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Student Enrollment Form</h3>
+				<form action="#" th:action="@{/save}" th:object="${employee}"
+					method="post">
+					<table class="table">
+						<tr>
+							<td>First Name :</td>
+							<td align="left"><input class="form-control" type="text"
+								th:field="*{firstName}" /> <label
+								th:if="${#fields.hasErrors('firstName')}"
+								th:errors="*{firstName}" th:class="'error'">Error in
+									First Name</label></td>
+						</tr>
+
+						<tr>
+							<td>Last Name :</td>
+							<td><input class="form-control" type="text"
+								th:field="*{lastName}" /> <label
+								th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+								th:class="'error'">Error in Last Name</label></td>
+						</tr>
+
+
+
+						<tr>
+							<td>Email :</td>
+							<td><input class="form-control" type="text"
+								th:field="*{email}" /> <label
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								th:class="'error'">Error in Email address</label></td>
+						</tr>
+
+						<tr>
+							<td>Designation :</td>
+							<td><input class="form-control" type="text"
+								th:field="*{designation}" /> <label
+								th:if="${#fields.hasErrors('designation')}"
+								th:errors="*{designation}" th:class="'error'">Error in
+									designation</label></td>
+						</tr>
+
+
+						<tr>
+							<td>Country :</td>
+							<td><select th:field="*{country}">
+									<option th:each="country : ${countries}" th:value="${country}"
+										th:text="${country}">Country</option>
+							</select> <label th:if="${#fields.hasErrors('country')}"
+								th:errors="*{country}" th:class="'error'">Error in
+									Country</label></td>
+						</tr>
+						<tr>
+							<td>Gender :</td>
+							<td><input type="radio" th:field="*{sex}" value="M" /><label>Male</label>
+								<input type="radio" th:field="*{sex}" value="F" /><label>Female</label>
+								<label th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"
+								th:class="'error'">Error</label></td>
+						</tr>
+						<tr>
+							<td>Section :</td>
+							<td><select th:field="*{section}">
+									<option th:each="section : ${sections}" th:value="${section}"
+										th:text="${section}">Section</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input class="btn btn-success" type="submit"
+								value="Enroll" /> <input class="btn btn-danger" type="reset"
+								value="Clear" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="footer">
+		<p>EWIRE SOFTTECH PVT LIMITED</p>
+	</div>
+
+
+
+
+</body>
+</html>
